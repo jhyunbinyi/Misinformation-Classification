@@ -19,15 +19,17 @@ Also replace `YOUR-APP-NAME` in **`docs/index.html`** in the three places where 
 ## 2. Enable GitHub Pages from `/docs`
 
 1. Push this repo to GitHub (e.g. `origin`).
-2. On GitHub: **Settings → Pages**.
+2. On GitHub: **Settings → Pages** (in the repo menu).
 3. Under **Build and deployment**:
    - **Source**: Deploy from a branch.
    - **Branch**: `main` (or your default branch).
-   - **Folder**: `/docs`.
+   - **Folder**: choose **/docs** (not "/(root)").
 4. Click **Save**. After a minute or two, the site will be at:
    - `https://<username>.github.io/<repo-name>/`
 
-GitHub serves `docs/index.html` as the site root, so the overview is the main page.
+GitHub will serve `docs/index.html` as the site home. The overview is the only page; "Try the Evaluator" sends users to your Streamlit app.
+
+**If you see the README instead of the overview:** the Folder is set to root. Change it to **/docs** and save. Leave root and README for the repo; the static site lives only in `docs/`.
 
 ## 3. Deploy the evaluator on Streamlit Cloud
 

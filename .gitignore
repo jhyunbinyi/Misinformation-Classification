@@ -1,0 +1,28 @@
+.ipynb_checkpoints
+.DS_Store
+.env
+.env.local
+*.env
+!.env.example
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+
+# Trained model artifacts (run scripts/train_predictive_models.py to generate)
+data/models/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.python-version
