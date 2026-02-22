@@ -1,0 +1,8 @@
+Pattern,Toxicity,Title vs. Body,Clickbait,Political Affiliation,Sentiment Analysis,Sensationalism
+Simple Prompt,87.0,96.0,96.0,78.0,78.0,84.0
+Function Calling,81.0,97.0,88.0,72.0,80.0,84.0
+Simple + Function,85.0,91.0,90.0,76.7,75.0,80.0
+Basic Chain of Thought,86.0,95.0,93.0,77.0,75.0,80.0
+Full CoT,73.3,96.0,91.2,78.9,77.0,84.4
+Full FCoT,73.3,94.0,93.0,76.7,78.0,81.0
+Complex Prompt,83.0,96.0,97.0,76.0,79.0,84.0

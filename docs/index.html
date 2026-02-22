@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Factuality Evaluator for News Articles</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Factuality Evaluator for News Articles</h1>
+      <p class="site-tagline">Helping readers and fact-checkers assess how reliable a news article is.</p>
+      <a href="https://YOUR-APP-NAME.streamlit.app" class="cta-button js-demo-link">Try the Evaluator →</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="content-section">
+      <h2>Why this matters</h2>
+      <p>Misinformation and biased reporting make it hard to trust what we read. We built a tool that scores news articles on <strong>six factuality dimensions</strong>—from political bias and clickbait to toxicity and headline–body alignment—and combines them into a single reliability score. The goal is to give a quick, interpretable signal of how trustworthy an article is, and to encourage people to look closer when something looks off.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>What we built</h2>
+      <p>Our system uses <strong>multiple AI agents</strong> working together: one agent per dimension (e.g., “How clickbait is the headline?” or “How balanced is the political framing?”), then a final agent that weighs their answers and produces a <strong>combined veracity score</strong> (0–10, lower = more reliable) plus a short written assessment. You can try it yourself in the <strong>Evaluate</strong> tab by pasting an article title and content.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>How we approached it</h2>
+      <p>We experimented with different ways to prompt the AI—from very simple instructions to structured “chain-of-thought” (step-by-step reasoning) and a “fractal” version with verification and self-correction. We also gave some agents access to <strong>web search</strong> so they can check claims against external sources. The pipeline is built with the Google Agent Development Kit (ADK) and Gemini.</p>
+
+      <div class="expander" id="prompting-expander">
+        <button type="button" class="expander-trigger" id="prompting-trigger" aria-expanded="false" aria-controls="prompting-content">
+          <span class="expander-label">More on our prompting strategies</span>
+          <span class="expander-icon" aria-hidden="true">▼</span>
+        </button>
+        <div class="expander-content" id="prompting-content" hidden>
+          <ul>
+            <li><strong>Simple prompt</strong> — Direct scoring with a short recipe; no extra steps.</li>
+            <li><strong>Function calling</strong> — Same as simple, but the model can use Google Search to verify facts.</li>
+            <li><strong>Basic chain-of-thought</strong> — Generic “identify evidence → evaluate → synthesize” steps.</li>
+            <li><strong>Full CoT</strong> — Factor-specific reasoning steps plus search; tailored instructions per dimension.</li>
+            <li><strong>Full FCoT</strong> — A four-step “fractal” flow (problem → solution → verification → justification) with optional sub-questions and re-grounding when search contradicts the draft.</li>
+            <li><strong>Complex prompt</strong> — Expert fact-checker role and a detailed paragraph, no fixed steps.</li>
+          </ul>
+          <p>We found that <strong>no single strategy wins on every dimension</strong>. Simpler prompts did best on concrete factors like toxicity; search helped most on title–body alignment; and structured reasoning (Full CoT) led on nuanced factors like political bias and sensationalism.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Results and impact</h2>
+      <p>We evaluated our prompting strategies on human-labeled articles. The main takeaway: <strong>the best strategy depends on what you're measuring</strong>. For example, a minimal “simple” prompt agreed with humans most on toxicity, while adding web search gave the best agreement on whether the headline matches the body. Our more structured strategies (Full CoT and Full FCoT) did best on political affiliation and sensationalism and give interpretable step-by-step explanations—so we use them as the default in the app, while keeping the others available for comparison.</p>
+      <div class="info-box">
+        <p>Want the full numbers? Check out our <strong>report</strong> and <strong>code</strong> (links below) for tables, methodology, and to run your own evaluations.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Try it and learn more</h2>
+      <p>Use the <strong>Evaluate</strong> tab to score any article. For the full write-up, methodology, and results tables, see:</p>
+      <ul class="links-list">
+        <li><strong>Live demo</strong> — <a href="https://YOUR-APP-NAME.streamlit.app" class="js-demo-link">Try the Factuality Evaluator</a></li>
+        <li id="report-item"><strong>Full report</strong> — <a href="#" id="report-link">Read the report</a></li>
+        <li id="github-item"><strong>GitHub</strong> — <a href="#" id="github-link">View code and data</a></li>
+      </ul>
+      <p class="caption">Built with Google ADK and Gemini. Data and licenses: see the repository.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Factuality Evaluator · <a href="https://YOUR-APP-NAME.streamlit.app" class="js-demo-link">Try the demo</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

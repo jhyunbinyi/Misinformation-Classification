@@ -1,0 +1,43 @@
+Pattern,Factor,Pearson,MAE,% within ±2,Generative (human eval %)
+Simple Prompt,Toxicity,-0.21661214442955293,1.3,80.0,87.0
+Simple Prompt,Title vs. Body,0.047619047619047616,0.4,100.0,96.0
+Simple Prompt,Clickbait,0.28365431446558764,0.4,100.0,96.0
+Simple Prompt,Political Affiliation,0.1652433556639446,2.2,60.0,78.0
+Simple Prompt,Sentiment Analysis,0.22511572713716682,2.2,70.0,78.0
+Simple Prompt,Sensationalism,0.5995437734798087,1.6,80.0,84.0
+Function Calling,Toxicity,-0.330350424728106,1.9,80.0,81.0
+Function Calling,Title vs. Body,,0.3,100.0,97.0
+Function Calling,Clickbait,0.18808946595394438,1.2,90.0,88.0
+Function Calling,Political Affiliation,0.0,2.8,50.0,72.0
+Function Calling,Sentiment Analysis,0.29435525865529544,2.0,70.0,80.0
+Function Calling,Sensationalism,0.13562224520112262,1.6,70.0,84.0
+Simple + Function,Toxicity,0.3368607684266075,1.5,70.0,85.0
+Simple + Function,Title vs. Body,0.4807341116991366,0.9,90.0,91.0
+Simple + Function,Clickbait,0.56544486128752,1.0,90.0,90.0
+Simple + Function,Political Affiliation,0.056533377108330646,2.3333333333333335,44.44444444444444,76.7
+Simple + Function,Sentiment Analysis,0.02926968568148472,2.5,50.0,75.0
+Simple + Function,Sensationalism,0.5835803609922537,2.0,66.66666666666666,80.0
+Basic Chain of Thought,Toxicity,-0.17206180040292135,1.4,80.0,86.0
+Basic Chain of Thought,Title vs. Body,-0.3273268353539886,0.5,100.0,95.0
+Basic Chain of Thought,Clickbait,0.5238095238095238,0.7,100.0,93.0
+Basic Chain of Thought,Political Affiliation,0.07169031129946635,2.3,50.0,77.0
+Basic Chain of Thought,Sentiment Analysis,0.28748248105153157,2.5,60.0,75.0
+Basic Chain of Thought,Sensationalism,0.3399500518250425,2.0,60.0,80.0
+Full CoT,Toxicity,-0.24019223070763068,2.6666666666666665,66.66666666666666,73.3
+Full CoT,Title vs. Body,-0.21821789023599236,0.4,100.0,96.0
+Full CoT,Clickbait,0.6459751934999393,0.875,87.5,91.2
+Full CoT,Political Affiliation,0.5150881375781081,2.111111111111111,55.55555555555556,78.9
+Full CoT,Sentiment Analysis,0.31562138431599956,2.3,70.0,77.0
+Full CoT,Sensationalism,0.26261286571944514,1.5555555555555556,77.77777777777779,84.4
+Full FCoT,Toxicity,-0.4562105641233377,2.6666666666666665,55.55555555555556,73.3
+Full FCoT,Title vs. Body,-0.42857142857142866,0.6,100.0,94.0
+Full FCoT,Clickbait,-0.11664236870396076,0.7,100.0,93.0
+Full FCoT,Political Affiliation,0.06255432421712243,2.3333333333333335,33.33333333333333,76.7
+Full FCoT,Sentiment Analysis,0.4914131671570722,2.2,60.0,78.0
+Full FCoT,Sensationalism,0.23006712855065806,1.9,70.0,81.0
+Complex Prompt,Toxicity,-0.22345167681715764,1.7,80.0,83.0
+Complex Prompt,Title vs. Body,0.047619047619047616,0.4,100.0,96.0
+Complex Prompt,Clickbait,0.6998542122237651,0.3,100.0,97.0
+Complex Prompt,Political Affiliation,0.07304358872384722,2.4,50.0,76.0
+Complex Prompt,Sentiment Analysis,0.014726598240177816,2.1,70.0,79.0
+Complex Prompt,Sensationalism,0.449088713139072,1.6,70.0,84.0
