@@ -4,9 +4,9 @@
  */
 (function () {
   var config = {
-    streamlitAppUrl: 'https://YOUR-APP-NAME.streamlit.app',
+    streamlitAppUrl: 'https://misinformation-classification.streamlit.app/',
     reportUrl: '',   // e.g. 'https://your-site.com/report.pdf' or ''
-    githubUrl: 'https://github.com/YOUR-USERNAME/Misinformation-Classification'
+    githubUrl: 'https://github.com/jhyunbinyi/Misinformation-Classification'
   };
 
   function applyConfig() {
