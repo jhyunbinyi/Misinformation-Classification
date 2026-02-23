@@ -1,18 +1,18 @@
-/* Factuality Evaluator — GitHub Pages */
+/* Factuality Evaluator — GitHub Pages (Streamlit-style light theme) */
 
 :root {
-  --bg: #0f0f12;
-  --bg-card: #18181d;
-  --text: #e4e4e9;
-  --text-muted: #9b9ba7;
-  --accent: #7c9cf2;
-  --accent-hover: #9bb2f7;
-  --border: #2a2a32;
-  --info-bg: rgba(124, 156, 242, 0.12);
-  --info-border: rgba(124, 156, 242, 0.35);
+  --bg: #ffffff;
+  --bg-card: #f0f2f6;
+  --text: #262730;
+  --text-muted: #6b6b7b;
+  --accent: #f63366;
+  --accent-hover: #ff4b7c;
+  --border: #e0e2e6;
+  --info-bg: rgba(246, 51, 102, 0.08);
+  --info-border: rgba(246, 51, 102, 0.25);
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  --radius: 10px;
+  --radius: 0.5rem;
   --space: 1.5rem;
   --max-width: 720px;
 }
@@ -70,7 +70,7 @@ body {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background: var(--accent);
-  color: var(--bg) !important;
+  color: #fff !important;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -80,6 +80,7 @@ body {
 
 .cta-button:hover {
   background: var(--accent-hover);
+  color: #fff !important;
   transform: translateY(-1px);
 }
 
@@ -153,7 +154,7 @@ a:hover {
 }
 
 .expander-trigger:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .expander-icon {
@@ -219,19 +220,4 @@ a:hover {
   margin-top: 0.5rem;
 }
 
-/* Footer */
-.site-footer {
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
-}
-
-.site-footer p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.site-footer a {
-  color: var(--accent);
-}
+/* Footer removed — no .site-footer styles needed */
