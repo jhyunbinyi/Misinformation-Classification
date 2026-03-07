@@ -3,8 +3,11 @@ Run the pipeline: session → Runner → run → return state.
 """
 
 import json
+import logging
 import re
 import uuid
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, Optional
 
 from google.adk.apps import App
@@ -13,6 +16,16 @@ from google.adk.sessions import InMemorySessionService
 from google.genai.types import Content, Part
 
 from src.app import FACTUALITY_FACTORS, app
+
+_LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
+_LOG_DIR.mkdir(exist_ok=True)
+
+logger = logging.getLogger("factuality")
+if not logger.handlers:
+    logger.setLevel(logging.INFO)
+    _fh = logging.FileHandler(_LOG_DIR / "pipeline.log")
+    _fh.setFormatter(logging.Formatter("%(asctime)s  %(levelname)s  %(message)s"))
+    logger.addHandler(_fh)
 
 
 def build_prompt(
@@ -124,12 +137,14 @@ async def run(
     """
     Run the factuality pipeline. Returns factor_scores, explanations, combined_veracity_score, overall_assessment.
     """
+    t_start = datetime.now(timezone.utc)
     app_to_use = app_instance or app
     session_service = InMemorySessionService()
     runner = Runner(app=app_to_use, session_service=session_service)
     app_name = app_to_use.name
     user_id = "eval_user"
     session_id = str(uuid.uuid4())
+    logger.info("run  session=%s  app=%s  title=%r", session_id, app_name, article_title[:80])
 
     await session_service.create_session(
         app_name=app_name,
@@ -178,9 +193,42 @@ async def run(
         combined_veracity_score = parsed.get("combined_veracity_score")
         overall_assessment = parsed.get("overall_assessment", "")
 
+    elapsed = (datetime.now(timezone.utc) - t_start).total_seconds()
+    logger.info(
+        "done session=%s  elapsed=%.1fs  combined_score=%s  factors=%s",
+        session_id, elapsed, combined_veracity_score, factor_scores,
+    )
+
+    _log_jsonl(session_id, app_name, article_title, factor_scores, combined_veracity_score, elapsed)
+
     return {
         "factor_scores": factor_scores,
         "explanations": explanations,
         "combined_veracity_score": combined_veracity_score,
         "overall_assessment": overall_assessment,
     }
+
+
+def _log_jsonl(
+    session_id: str,
+    app_name: str,
+    title: str,
+    factor_scores: dict,
+    combined: Any,
+    elapsed: float,
+) -> None:
+    """Append a structured JSON-lines record for each pipeline run."""
+    record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "session_id": session_id,
+        "app": app_name,
+        "article_title": title[:120],
+        "factor_scores": factor_scores,
+        "combined_veracity_score": combined,
+        "elapsed_seconds": round(elapsed, 2),
+    }
+    try:
+        with open(_LOG_DIR / "experiments.jsonl", "a") as f:
+            f.write(json.dumps(record) + "\n")
+    except OSError:
+        logger.warning("Could not write to experiments.jsonl")
